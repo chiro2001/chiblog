@@ -1,0 +1,4 @@
+itsdangerous
+flask
+requests
+colorlog
