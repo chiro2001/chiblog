@@ -32,3 +32,10 @@ Hypermedia 即返回结果中提供链接，连向其他API方法，使得用户
 
 ## 数据库规划
 
+1. `user`：
+   1. `name`：用户名
+   2. `nick`：昵称（显示名字）
+   3. `created_at`创建于
+   4. `level`
+   5. `profile`
+   6. 

@@ -1,20 +1,17 @@
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS
+from flask_restful import reqparse, abort, Api, Resource
 
-app = Flask(__name__)
-# 设置可跨域访问
-# 因为要用JWT，就不需要supports_credentials来支持Cookies了
+from apis.users import User
+
+app_name = 'apis'
+app = Flask(app_name)
+# 设置可跨域访问；因为要用JWT，就不需要supports_credentials来支持Cookies了
 CORS(app, supports_credentials=False)
 
-
-def test():
-    """
-    :param:
-    :return:
-    """
-    pass
+api = Api(app)
+api.add_resource(User, "/user")
 
 
 if __name__ == '__main__':
-    print(dir(test))
-    print(test.__doc__)
+    app.run('0.0.0.0', port=80, debug=False)
