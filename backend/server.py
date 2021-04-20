@@ -11,4 +11,4 @@ dm = DispatcherMiddleware(app_file, {Constants.API_PATH: app_api})
 
 
 if __name__ == '__main__':
-    run_simple(Constants.RUN_LISTENING, Constants.RUN_PORT, dm, use_reloader=Constants.RUN_USE_RELOAD)
+    run_simple(Constants.RUN_LISTENING, Constants.RUN_PORT, dm, use_reloader=Constants.RUN_USE_RELOAD, threaded=True)

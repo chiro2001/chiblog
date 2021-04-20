@@ -57,13 +57,13 @@
 
 ## Workflow
 
-- [ ] `Flask`使用`RESTful`扩展
-  - [ ] 使用`RESTful`插件的登录验证
+- [x] `Flask`使用`RESTful`扩展
+  - [ ] ~~使用`RESTful`插件的登录验证~~
 - [ ] `JWT`认证
-  - [ ] `JWT`插件和`RESTful`插件一起使用
-  - [ ] 自己实现`JWT`插件和`RESTful`的融合
+  - [ ] ~~`JWT`插件和`RESTful`插件一起使用~~
+  - [x] 自己实现`JWT`插件和`RESTful`的融合
     - [x] 自定义类装饰器和函数装饰器
-    - [ ] 装饰器配合认证使用
+    - [x] 装饰器配合认证使用
 - [ ] 使用`OAths 2.0`登录
   - [x] 申请`Github`登录
   - [ ] 申请`QQ`登录

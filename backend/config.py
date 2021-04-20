@@ -6,7 +6,7 @@ import secrets
 class Constants:
     # Version info
     VERSION = "0.0.1"
-    AUTHOR = "Chiro"
+    OWNER = "Chiro"
     EMAIL = "Chiro2001@163.com"
     # JWT config
     JWT_SECRET_KEY = secrets.SECRET_WORDS
@@ -18,6 +18,12 @@ class Constants:
     JWT_REFRESH_TIME = 60 * 60 * 24 * 30
     # Database
     DATABASE_URI = secrets.SECRET_MONGO_URI
+    # Email
+    EMAIL_SENDER = "LanceLiang2018@163.com"
+    EMAIL_SMTP_PASSWORD = "1352040930smtp"
+    EMAIL_ERROR_TITLE = "chiblog errors"
+    EMAIL_SMTP_SSL = 'smtp.163.com'
+    EMAIL_SMTP_PORT = 465
     # API config
     API_PATH = '/api/v1'
     # Running config

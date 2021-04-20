@@ -21,5 +21,8 @@ class DataBase:
         self.db.chiblog_bug.insert_one({'time': time.asctime(), 'error': error})
 
 
+db = DataBase()
+
 if __name__ == '__main__':
-    _db = DataBase()
+    # _db = DataBase()
+    pass
