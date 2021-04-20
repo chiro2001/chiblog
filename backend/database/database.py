@@ -1,5 +1,6 @@
 import time
 import pymongo
+from config import Constants
 
 
 class DataBase:
@@ -10,8 +11,10 @@ class DataBase:
         self.connect_init()
 
     def connect_init(self):
-        # self.client = pymongo.MongoClient('mongodb://chiro:chirodb3521@shimamura.chiro.work/chiro')
-        self.client = pymongo.MongoClient()
+        if len(Constants.DATABASE_URI) > 0:
+            self.client = pymongo.MongoClient(Constants.DATABASE_URI)
+        else:
+            self.client = pymongo.MongoClient()
         self.db = self.client.chiro
 
     def error_report(self, error):
@@ -20,4 +23,3 @@ class DataBase:
 
 if __name__ == '__main__':
     _db = DataBase()
-

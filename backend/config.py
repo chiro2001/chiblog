@@ -1,5 +1,6 @@
 import os
 from itsdangerous import TimedJSONWebSignatureSerializer as TJWSS
+import secrets
 
 
 class Constants:
@@ -8,13 +9,15 @@ class Constants:
     AUTHOR = "Chiro"
     EMAIL = "Chiro2001@163.com"
     # JWT config
-    JWT_SECRET_KEY = "HeyThisIsAStrangeStringChiro3521#*&"
+    JWT_SECRET_KEY = secrets.SECRET_WORDS
     JWT_HEADER_TYPE = ""
     JWT_HEADER_NAME = "Authorization"
     JWT_LOCATIONS = ['headers', ]
     JWT_MESSAGE_401 = "Authorization required in head"
     JWT_ACCESS_TIME = 60 * 5
     JWT_REFRESH_TIME = 60 * 60 * 24 * 30
+    # Database
+    DATABASE_URI = secrets.SECRET_MONGO_URI
     # API config
     API_PATH = '/api/v1'
     # Running config
