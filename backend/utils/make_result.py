@@ -1,5 +1,7 @@
 from flask import jsonify
 from config import Constants
+import json
+from utils.formats import json_dumps_format
 
 
 class ResultRules:
@@ -9,6 +11,9 @@ class ResultRules:
         401: Constants.JWT_MESSAGE_401,
         404: "The Requested URL Was Not Found",
         403: "Forbidden",
+        422: "Bad Token",
+        423: "Need to Refresh Access Token",
+        424: "Need to Re-login",
         500: "Internal Server Error",
     }
 
@@ -25,4 +30,5 @@ def make_result(code=200, message=None, data=None):
         result['error'] = ResultRules.code_message.get(code, "Unknown Error")
     if data is not None:
         result['data'] = data
+    result = json.loads(json_dumps_format(result))
     return result, code

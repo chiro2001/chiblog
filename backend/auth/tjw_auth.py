@@ -5,15 +5,17 @@ from utils.make_result import make_result
 from config import Statics, Constants
 
 
-def create_access_token(identity: str = None) -> str:
+def create_access_token(identity: dict = None) -> str:
     if identity is None:
         return ""
+    identity['type'] = 'access_token'
     return Statics.tjw_access_token.dumps(identity).decode()
 
 
-def create_refresh_token(identity: str = None) -> str:
+def create_refresh_token(identity: dict = None) -> str:
     if identity is None:
         return ""
+    identity['type'] = 'refresh_token'
     return Statics.tjw_refresh_token.dumps(identity).decode()
 
 
@@ -57,9 +59,14 @@ def auth_required_method(fn):
             return make_result(401)
         try:
             data = Statics.tjw_access_token.loads(auth)
-        except (BadSignature, BadData, BadHeader, BadPayload, BadTimeSignature) as e:
+            if data.get('type', None) != 'access_token':
+                raise BadSignature("Token type error.")
+        except (BadSignature, BadData, BadHeader, BadPayload) as e:
             return make_result(422, message=f"Bad token: {e}")
+        except BadTimeSignature:
+            return make_result(423)
         logger.info(f"data: {data}")
+        kwargs['uid'] = data.get('uid')
         return fn(*args, **kwargs)
 
     wrapper.__inner__ = fn

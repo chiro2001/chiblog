@@ -52,26 +52,31 @@ Hypermedia 即返回结果中提供链接，连向其他API方法，使得用户
 ## 数据库规划
 
 1. `user`：
-   1. `username`：用户名
-   2. `nick`：昵称（显示名字）
-   3. `created_at`：创建于
-   4. `level`：权限等级
-   5. `state`：状态：[`verifying`, `banned`, `deleted`]
-   6. `last_active`：上次活跃
-   7. `profile`：个人资料
+   1. `cid`：ID
+   2. `username`：用户名
+   3. `nick`：昵称（显示名字）
+   4. `created_at`：创建于
+   5. `updated_at`：更新于
+   6. `level`：权限等级
+   7. `state`：状态：[`normal`, `verifying`, `banned`, `deleted`]
+   8. `last_active`：上次活跃
+   9. `profile`：个人资料
       1. `contact`
          1. `github`
          2. `emial`
          3. `xxxxx`
-2. `password`
-   1. `username`
+2. `session`
+   1. `uid`
    2. `password`
-   3. 
+   3. `created_at`：创建于
+   4. `updated_at`：更新于
+   5. `last_login`：上次登录
 3. `content`
-   1. `title`
-   2. `author`：作者的`username`，返回时被`user`表内容覆盖
-   3. `content`
-   4. `created_at`
-   5. `last_modified`
-   6. `password`：需要密码才能阅读
-   7. `level`：低于此等级不能阅读
+   1. `cid`
+   2. `title`
+   3. `author`：作者的`username`，`POST`的时候用用户`uid`，返回时被`user`表内容覆盖
+   4. `content`
+   5. `created_at`：创建于
+   6. `updated_at`：更新于
+   7. `password`：需要密码才能阅读
+   8. `level`：低于此等级不能阅读
