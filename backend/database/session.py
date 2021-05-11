@@ -22,8 +22,8 @@ class Session:
         session_data = self.get_by_uid(uid)
         if session_data is None:
             return False
-        print('session_data', json_dumps_format(session_data))
-        print('session', json_dumps_format(session))
+        # print('session_data', json_dumps_format(session_data))
+        # print('session', json_dumps_format(session))
         if 'created_at' in session_data:
             del session_data['created_at']
         dict_update(session_data, session)

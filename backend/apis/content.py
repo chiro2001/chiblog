@@ -10,6 +10,16 @@ import exceptions
 import json
 
 
+class ContentTree(Resource):
+    def get(self):
+        """
+        获取内容的树状path
+        :return:
+        """
+        root = db.content.get_tree_root()
+        return make_result(data={'tree': root})
+
+
 class Content(Resource):
     args_list_content = reqparse.RequestParser() \
         .add_argument("filters", type=list, required=False, location=['json', 'args']) \
@@ -34,7 +44,7 @@ class Content(Resource):
         filters = {} if filters is None else filters
         args = {k: args[k] for k in args if args[k] is not None}
         kwargs = {}
-        kws = ['sort_by', 'limit', 'sort_by', 'reverse']
+        kws = ['sort_by', 'limit', 'offset', 'reverse']
         for k in kws:
             if k in args:
                 kwargs[k] = args[k]

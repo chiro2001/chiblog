@@ -75,8 +75,9 @@ Hypermedia 即返回结果中提供链接，连向其他API方法，使得用户
    1. `cid`
    2. `title`
    3. `author`：作者的`username`，`POST`的时候用用户`uid`，返回时被`user`表内容覆盖
-   4. `content`
-   5. `created_at`：创建于
-   6. `updated_at`：更新于
-   7. `password`：需要密码才能阅读
-   8. `level`：低于此等级不能阅读
+   4. `path`：页面路径
+   5. `content`
+   6. `created_at`：创建于
+   7. `updated_at`：更新于
+   8. `password`：需要密码才能阅读
+   9. `level`：低于此等级不能阅读

@@ -59,3 +59,46 @@ def find_many(col: pymongo.collection.Collection,
         result = result.sort(sort_by, pymongo.DESCENDING if reverse else pymongo.ASCENDING)
     result = result.skip(offset).limit(limit)
     return list(result)
+
+
+def tree_update_path(tree: dict, path: str = None, splits: list = None):
+    if path is None and splits is None:
+        return tree
+    if path is not None:
+        splits = [_ for _ in path.split('/') if len(_) > 0]
+    if splits is None:
+        return tree
+    if len(splits) == 0:
+        return tree
+    if splits[0] not in tree or len(splits) == 2:
+        tree[splits[0]] = {}
+    if len(splits) == 1:
+        tree[splits[0]] = None
+    if tree[splits[0]] is not None:
+        tree[splits[0]].update(tree_update_path(tree[splits[0]], splits=splits[1:]))
+    else:
+        return tree
+    return tree
+
+
+def tree_delete_path(tree, path: str) -> (dict, bool):
+    splits = [_ for _ in path.split('/') if len(_) > 0]
+    if len(splits) == 0 and path == '/':
+        return {}, True
+    try:
+        exec(f"""del tree{''.join([f'["{i}"]' for i in splits])}""")
+    except KeyError:
+        return tree, False
+    return tree, True
+
+
+# if __name__ == '__main__':
+#     t = {}
+#     tree_update_path(t, "path1/path2/")
+#     print(t)
+#     tree_update_path(t, "path1/path2/ds")
+#     print(t)
+#     tree_update_path(t, "path3/path2/ds")
+#     print(t)
+#     t, res = tree_delete_path(t, "/")
+#     print(t, res)

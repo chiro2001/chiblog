@@ -4,7 +4,7 @@ from flask_restful import reqparse, abort, Api, Resource
 
 from config import Constants
 from apis.users import UserUid, User, Session
-from apis.content import Content, ContentCid
+from apis.content import Content, ContentCid, ContentTree
 from flask_pymongo import PyMongo
 from database.database import set_mongo
 
@@ -23,6 +23,7 @@ api.add_resource(User, "/user")
 api.add_resource(UserUid, "/user/<int:uid>")
 api.add_resource(Session, "/session")
 api.add_resource(ContentCid, "/content/<int:cid>")
+api.add_resource(ContentTree, "/content/tree")
 api.add_resource(Content, "/content")
 
 if __name__ == '__main__':

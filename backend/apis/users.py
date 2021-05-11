@@ -15,7 +15,8 @@ class User(Resource):
         .add_argument("username", type=str, required=True, location=["json", ]) \
         .add_argument("password", type=str, required=True, location=["json", ])
 
-    # TODO: 此处可能并非线程安全！使用的 args_signin 是静态变量
+    # 此处可能并非线程安全...使用的 args_signin 是静态变量
+    # 但是parser使用的是全局request，所以应该安全
     @args_required_method(args_signin)
     def post(self):
         """
